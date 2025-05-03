@@ -16,7 +16,7 @@ function calcular(){
 
         if(a < 0 || a > 30){
             alerta("No puede ingresar valores negativos ni mayores a 30")
-        }else if(b < 0 || a > 30){
+        }else if(b < 0 || b > 30){
             alerta("No puede ingresar valores negativos ni mayores a 30")
         }else if(c < 0 || c > 40){
             alerta("No puede ingresar valores negativos ni mayores a 40")
@@ -24,6 +24,16 @@ function calcular(){
             let notaFinal = a + b + c
 
             document.getElementById("valorNotaFinal").value = notaFinal
+
+            if(notaFinal>=0 && notaFinal<=59){
+                alertaNota("Reprobado")
+            }else if(notaFinal>=60 && notaFinal<=79){
+                alertaNota("Bueno")
+            }else if(notaFinal>=80 && notaFinal<=89){
+                alertaNota("Muy Bueno")
+            }else if(notaFinal>=90 && notaFinal<=100){
+                alertaNota("Sobresaliente")
+            }
         }
     }
 }
@@ -40,4 +50,24 @@ function alerta(mensaje){
         title: mensaje,
         icon: "warning"
     })
+}
+
+function alertaNota(mensaje){
+    Swal.fire({
+        title: mensaje,
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
 }
